@@ -8,13 +8,13 @@
 <h1>Titulación por hemaglutinación</h1>
 <p class="sub">Elige tu caso, ajusta los datos y recorre la placa paso a paso. Cada pocillo se puede tocar.</p>
 
-<section><h2>¿De qué trata tu protocolo?</h2>
+<section class="s1"><h2><span class="n">1</span>¿De qué trata tu protocolo?</h2>
 <select id="pr"><option value="cin">Cinética de inmunización: suero de varias semanas</option><option value="uno">Una sola muestra de suero</option><option value="mono">Anticuerpo monoclonal o reactivo comercial</option></select>
 <p id="ds" class="t"></p>
 <label id="wkb">Semanas con sangrado (sin contar la semana 0)<input id="wk" type="number" value="4" min="1" max="6"></label>
 </section>
 
-<section><h2>Método y datos</h2>
+<section class="s2"><h2><span class="n">2</span>Método y datos</h2>
 <label>Método<select id="md" class="p"><option value="c">En cascada: paso un volumen de un pocillo al siguiente</option><option value="d">Directa: armo cada pocillo desde el suero original</option></select></label>
 <p class="t">En ambos el diluyente ya está en los pocillos. La diferencia es de dónde sale el volumen que pasas: del pocillo anterior (cascada, la más usada) o siempre del suero original.</p>
 <div class="g">
@@ -32,22 +32,23 @@
 <div class="ck"><input type="checkbox" id="pos"><span>Control positivo: suero de título conocido (una fila)</span></div>
 </section>
 
-<section><h2>Tus sueros y cuánto tienes</h2>
+<section class="s3"><h2><span class="n">3</span>Tus sueros y cuánto tienes</h2>
 <p class="t">Una fila por suero. Edita el nombre y los µL disponibles, y la herramienta te dice para cuánto alcanza.</p>
 <div id="rb"></div>
 <p class="t">Si falta suero: baja el volumen por pocillo, o pre-diluye el suero (sube «Dilución del pocillo 1»), aunque así no medirás títulos bajos. Si el bioterio lo permite, recolecta más sangre, respetando el límite de sangrado de tu protocolo.</p>
 </section>
 
-<section><h2>La placa</h2>
+<section class="s4"><h2><span class="n">4</span>La placa, paso a paso</h2>
 <div class="plate"><div class="pw"><div class="pg" id="pg"></div></div></div>
 <p class="t" id="inf">Toca un pocillo para ver su contenido. Línea continua: de donde tomas. Línea punteada: a donde pasas.</p>
 <div class="bar"><label>Fila que se explica<select id="sr" onchange="sr=+this.value;render()"></select></label><div class="ck"><input type="checkbox" id="fl" onchange="render()"><span>Ver placa completa de 96</span></div></div>
+<div class="prog"><i id="pb"></i></div>
 <div id="stt"></div><div id="pal"></div>
 <p class="t">Todas las filas se llenan igual; repite cada paso fila por fila, con punta nueva en cada una.</p>
 </section>
 
-<section><h2>Tabla de la fila</h2><div class="tw"><table id="tb"></table></div></section>
-<section><h2>Títulos que marcaste</h2><div id="ti" class="t">Llega al último paso y toca los pocillos para marcarlos.</div></section>
+<section class="s5"><h2><span class="n">5</span>Tabla de la fila</h2><div class="tw"><table id="tb"></table></div></section>
+<section class="s5"><h2><span class="n">6</span>Títulos que marcaste</h2><div id="ti" class="t">Llega al último paso y toca los pocillos para marcarlos.</div></section>
 <p class="t" style="text-align:center;margin:18px 0 12px">Herramienta educativa. Verifica volúmenes, concentración de GR y tiempos con la guía de tu práctica.</p>
 <div class="nav"><button class="o" onclick="go(-1)">Anterior</button><span class="t" id="cnt"></span><button onclick="go(1)">Siguiente</button></div></main>
 <script src="app.js"></script></body></html>
