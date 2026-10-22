@@ -1,0 +1,393 @@
+/* Diluciones seriadas: estilos.
+   Colores y tamaños principales: variables de :root (modo claro y oscuro). */
+
+:root{
+  --bg:#fbf1f3;
+  --cd:#fffafb;
+  --ink:#2a1f24;
+  --mu:#7a6770;
+  --ac:#c4243f;
+  --ln:#ecd9de;
+  --sf:#f7e9ec;
+  --wi:#f6fafd;
+  --wo:#c9d7e3;
+  --pl:linear-gradient(135deg,rgba(255,255,255,.7),rgba(186,214,236,.45));
+  color-scheme:light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px)
+}
+
+@media(prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+  --bg:#1a1216;
+  --cd:#241a1f;
+  --ink:#f3e8ec;
+  --mu:#b39ca6;
+  --ac:#ff7188;
+  --ln:#3a2a31;
+  --sf:#2e2228;
+  --wi:#33404d;
+  --wo:#151c25;
+  --pl:linear-gradient(135deg,rgba(255,255,255,.12),rgba(120,160,200,.16));
+  color-scheme:dark
+}
+
+}
+
+:root[data-theme="dark"]{
+  --bg:#1a1216;
+  --cd:#241a1f;
+  --ink:#f3e8ec;
+  --mu:#b39ca6;
+  --ac:#ff7188;
+  --ln:#3a2a31;
+  --sf:#2e2228;
+  --wi:#33404d;
+  --wo:#151c25;
+  --pl:linear-gradient(135deg,rgba(255,255,255,.12),rgba(120,160,200,.16));
+  color-scheme:dark
+}
+
+
+/* Base de la página */
+html{
+  scroll-padding-top:env(safe-area-inset-top,0px)
+}
+
+*{
+  box-sizing:border-box
+}
+
+html{
+  -webkit-text-size-adjust:100%;
+  text-size-adjust:100%
+}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font:clamp(16px,1.2vw + 12.5px,18px)/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif
+}
+
+main{
+  max-width:780px;
+  margin:0 auto;
+  padding:16px max(16px,env(safe-area-inset-right,0px)) 16px max(16px,env(safe-area-inset-left,0px))
+}
+
+h1{
+  font-size:clamp(1.5rem,1.2rem + 1.6vw,2.1rem);
+  line-height:1.15;
+  margin:.2em 0 .25em;
+  letter-spacing:-.015em
+}
+
+h2{
+  font-size:clamp(1.1rem,1rem + .5vw,1.3rem);
+  line-height:1.25;
+  margin:0 0 .6em
+}
+
+.sub,.t{
+  color:var(--mu)
+}
+
+.t{
+  font-size:.9rem;
+  line-height:1.45
+}
+
+
+/* Tarjetas, campos de formulario y botones */
+section{
+  background:var(--cd);
+  border:1px solid var(--ln);
+  border-radius:14px;
+  padding:14px;
+  margin:12px 0
+}
+
+.g{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+  gap:10px
+}
+
+label{
+  display:block;
+  font-size:.92rem;
+  color:var(--mu)
+}
+
+input,select{
+  width:100%;
+  margin-top:4px;
+  min-height:44px;
+  padding:8px 10px;
+  font:inherit;
+  color:var(--ink);
+  background:var(--sf);
+  border:1px solid var(--ln);
+  border-radius:8px
+}
+
+:focus-visible{
+  outline:2px solid var(--ac);
+  outline-offset:2px
+}
+
+.ck{
+  display:flex;
+  gap:8px;
+  align-items:center;
+  margin:6px 0
+}
+
+.ck input{
+  width:22px;
+  height:22px;
+  min-height:0;
+  margin:0;
+  flex:none
+}
+
+.rw{
+  display:grid;
+  grid-template-columns:1fr 90px auto;
+  gap:6px;
+  align-items:center;
+  margin-bottom:8px
+}
+
+.rw input{
+  margin:0
+}
+
+.rw div{
+  grid-column:1/-1
+}
+
+.wa{
+  color:var(--ac);
+  font-weight:600
+}
+
+button{
+  font:inherit;
+  min-height:44px;
+  padding:8px 14px;
+  border-radius:10px;
+  border:0;
+  background:var(--ac);
+  color:#fff;
+  cursor:pointer;
+  touch-action:manipulation
+}
+
+button.o{
+  background:var(--sf);
+  color:var(--ink);
+  border:1px solid var(--ln)
+}
+
+
+/* Placa de 96 pocillos (aspecto 3D) */
+.plate{
+  max-width:760px;
+  margin:0 auto;
+  padding:10px 10px 12px;
+  border-radius:16px;
+  background:var(--pl);
+  border:1.5px solid rgba(255,255,255,.75);
+  box-shadow:0 12px 26px rgba(90,40,55,.2),inset 0 0 0 1px rgba(110,140,170,.35),inset 0 2px 8px rgba(255,255,255,.55)
+}
+
+.pg{
+  display:grid;
+  gap:4px;
+  align-items:center
+}
+
+.pw{
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch
+}
+
+.cl{
+  font-size:clamp(.7rem,.6rem + .4vw,.85rem);
+  text-align:center;
+  color:var(--mu)
+}
+
+.well{
+  aspect-ratio:1;
+  min-height:0;
+  border-radius:50%;
+  padding:0;
+  position:relative;
+  background:radial-gradient(circle at 50% 38%,var(--wi) 0 55%,var(--wo) 100%);
+  box-shadow:inset 0 3px 5px rgba(0,0,0,.3),inset 0 -2px 3px rgba(255,255,255,.65),0 1px 1px rgba(255,255,255,.8);
+  border:0
+}
+
+.well.off{
+  opacity:.4;
+  cursor:default
+}
+
+.lq{
+  position:absolute;
+  inset:15%;
+  border-radius:50%;
+  transform:scale(var(--s,0));
+  transition:transform .4s,background .4s
+}
+
+.lq::after{
+  content:"";
+  position:absolute;
+  left:16%;
+  top:12%;
+  width:36%;
+  height:26%;
+  border-radius:50%;
+  background:rgba(255,255,255,.55);
+  transform:rotate(-28deg)
+}
+
+.well.src{
+  outline:3px solid var(--ac);
+  outline-offset:1px
+}
+
+.well.dst{
+  outline:3px dashed var(--ac);
+  outline-offset:1px
+}
+
+
+/* Pasos del procedimiento y tabla */
+.bar{
+  display:flex;
+  gap:8px;
+  align-items:center;
+  flex-wrap:wrap;
+  margin:10px 0
+}
+
+#stt{
+  background:var(--sf);
+  border-radius:10px;
+  padding:12px 14px;
+  min-height:6em;
+  font-size:1.02rem
+}
+
+.tw{
+  overflow-x:auto
+}
+
+table{
+  border-collapse:collapse;
+  width:100%;
+  font-size:.92rem
+}
+
+td,th{
+  padding:6px 8px;
+  border-bottom:1px solid var(--ln);
+  text-align:left;
+  white-space:nowrap
+}
+
+b{
+  font-variant-numeric:tabular-nums
+}
+
+ul{
+  padding-left:1.2em;
+  margin:0
+}
+
+
+/* Barra inferior, paleta de lectura y pantallas grandes */
+.lq svg{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%
+}
+
+.nav{
+  position:sticky;
+  bottom:0;
+  z-index:5;
+  display:flex;
+  gap:10px;
+  align-items:center;
+  justify-content:space-between;
+  padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));
+  background:var(--cd);
+  border-top:1px solid var(--ln);
+  margin:0 -16px -16px
+}
+
+.nav button{
+  flex:1
+}
+
+.pal{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+  margin:10px 0
+}
+
+.pal button{
+  background:var(--sf);
+  color:var(--ink);
+  border:2px solid var(--ln);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:4px;
+  padding:8px 4px;
+  font-size:.95rem;
+  line-height:1.2;
+  height:auto
+}
+
+.pal button.on{
+  border-color:var(--ac)
+}
+
+.pal .well{
+  width:56px;
+  pointer-events:none
+}
+
+@media(min-width:760px){
+  main{
+  max-width:940px;
+  padding-top:24px
+}
+
+.g{
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr))
+}
+
+.pal .well{
+  width:72px
+}
+
+}
+
+@media(max-height:520px){
+  .nav{
+  position:static;
+  margin:12px -16px 0
+}
+
+}

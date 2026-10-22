@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Calculadora y simulador paso a paso de diluciones seriadas y titulación por hemaglutinación, en español.">
+<title>Titulación en placa · diluciones seriadas</title>
+<link rel="stylesheet" href="estilos.css"></head><body><main>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><filter id="rg" x="-20%" y="-20%" width="140%" height="140%"><feTurbulence type="fractalNoise" baseFrequency=".07" numOctaves="2" seed="4" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="9"/></filter><filter id="gn" x="-20%" y="-20%" width="140%" height="140%"><feTurbulence type="fractalNoise" baseFrequency=".07" numOctaves="2" seed="4" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="7" result="d"/><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="9" result="g"/><feColorMatrix in="g" type="matrix" values="0 0 0 0 .45 0 0 0 0 .02 0 0 0 0 .08 0 0 0 .9 -.25" result="s"/><feComposite in="s" in2="d" operator="in" result="sp"/><feMerge><feMergeNode in="d"/><feMergeNode in="sp"/></feMerge></filter><radialGradient id="gb"><stop offset="0" stop-color="#3b040d"/><stop offset=".6" stop-color="#7d0f24"/><stop offset="1" stop-color="#a81b32" stop-opacity="0"/></radialGradient><radialGradient id="gm"><stop offset="0" stop-color="#e06a7c" stop-opacity=".8"/><stop offset=".75" stop-color="#c13049" stop-opacity=".88"/><stop offset="1" stop-color="#9d1a30" stop-opacity=".95"/></radialGradient></defs></svg>
+<h1>Titulación por hemaglutinación</h1>
+<p class="sub">Elige tu caso, ajusta los datos y recorre la placa paso a paso. Cada pocillo se puede tocar.</p>
+
+<section><h2>¿De qué trata tu protocolo?</h2>
+<select id="pr"><option value="cin">Cinética de inmunización: suero de varias semanas</option><option value="uno">Una sola muestra de suero</option><option value="mono">Anticuerpo monoclonal o reactivo comercial</option></select>
+<p id="ds" class="t"></p>
+<label id="wkb">Semanas con sangrado (sin contar la semana 0)<input id="wk" type="number" value="4" min="1" max="6"></label>
+</section>
+
+<section><h2>Método y datos</h2>
+<label>Método<select id="md" class="p"><option value="c">En cascada: paso un volumen de un pocillo al siguiente</option><option value="d">Directa: armo cada pocillo desde el suero original</option></select></label>
+<p class="t">En ambos el diluyente ya está en los pocillos. La diferencia es de dónde sale el volumen que pasas: del pocillo anterior (cascada, la más usada) o siempre del suero original.</p>
+<div class="g">
+<label>Volumen final por pocillo (µL)<input class="p" id="V" type="number" value="25" min="1" step="any"></label>
+<label>Factor de dilución<input class="p" id="f" type="number" value="2" min="1.5" step="0.5"></label>
+<label>Pocillos por fila (2–12)<input class="p" id="n" type="number" value="8" min="2" max="12"></label>
+<label>Dilución del pocillo 1 (1:x)<input class="p" id="D" type="number" value="1" min="1" step="any"></label>
+<label>Extra de seguridad (%)<input class="p" id="ex" type="number" value="10" min="0"></label>
+<label>Suspensión de GR (µL, 0 = no)<input class="p" id="g" type="number" value="25" min="0" step="any"></label>
+<label>Incubación (min)<input class="p" id="inc" type="number" value="60" min="0"></label>
+<label>Diluyente<input class="p" id="dl" value="PBS"></label>
+<label id="stk">Concentración del stock (µg/mL)<input class="p" id="cs" type="number" value="1000" min="0" step="any"></label>
+</div>
+<div class="ck"><input class="p" type="checkbox" id="neg" checked><span>Control negativo: solo diluyente + GR</span></div>
+<div class="ck"><input type="checkbox" id="pos"><span>Control positivo: suero de título conocido (una fila)</span></div>
+</section>
+
+<section><h2>Tus sueros y cuánto tienes</h2>
+<p class="t">Una fila por suero. Edita el nombre y los µL disponibles, y la herramienta te dice para cuánto alcanza.</p>
+<div id="rb"></div>
+<p class="t">Si falta suero: baja el volumen por pocillo, o pre-diluye el suero (sube «Dilución del pocillo 1»), aunque así no medirás títulos bajos. Si el bioterio lo permite, recolecta más sangre, respetando el límite de sangrado de tu protocolo.</p>
+</section>
+
+<section><h2>La placa</h2>
+<div class="plate"><div class="pw"><div class="pg" id="pg"></div></div></div>
+<p class="t" id="inf">Toca un pocillo para ver su contenido. Línea continua: de donde tomas. Línea punteada: a donde pasas.</p>
+<div class="bar"><label>Fila que se explica<select id="sr" onchange="sr=+this.value;render()"></select></label><div class="ck"><input type="checkbox" id="fl" onchange="render()"><span>Ver placa completa de 96</span></div></div>
+<div id="stt"></div><div id="pal"></div>
+<p class="t">Todas las filas se llenan igual; repite cada paso fila por fila, con punta nueva en cada una.</p>
+</section>
+
+<section><h2>Tabla de la fila</h2><div class="tw"><table id="tb"></table></div></section>
+<section><h2>Títulos que marcaste</h2><div id="ti" class="t">Llega al último paso y toca los pocillos para marcarlos.</div></section>
+<p class="t" style="text-align:center;margin:18px 0 12px">Herramienta educativa. Verifica volúmenes, concentración de GR y tiempos con la guía de tu práctica.</p>
+<div class="nav"><button class="o" onclick="go(-1)">Anterior</button><span class="t" id="cnt"></span><button onclick="go(1)">Siguiente</button></div></main>
+<script src="app.js"></script></body></html>
