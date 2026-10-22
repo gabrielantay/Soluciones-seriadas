@@ -391,3 +391,37 @@ ul{
 }
 
 }
+
+
+/* ------------------------------------------------------------
+   Ajustes v2: texto más grande en tablet y más jerarquía visual
+   ------------------------------------------------------------ */
+
+/* Tamaño del texto: rem escala con esta línea (celular ~17 px, tablet ~21 px) */
+html{font-size:clamp(17px,.9vw + 14px,21px)}
+body{font-size:1rem}
+
+/* Colores de acento por sección */
+:root{--tl:#0f766e;--am:#b7791f;--onb:#fff;--pill:#fbe3e8}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--tl:#2dd4bf;--am:#fbbf24;--onb:#1a1216;--pill:#3d2229}}
+:root[data-theme="dark"]{--tl:#2dd4bf;--am:#fbbf24;--onb:#1a1216;--pill:#3d2229}
+.s1,.s2{--sc:var(--tl)}
+.s3{--sc:var(--am)}
+.s4{--sc:var(--ac)}
+
+/* Tarjetas: franja de color, sombra suave y más aire */
+section{border-top:5px solid var(--sc,var(--ln));padding:18px;margin:18px 0;box-shadow:0 2px 12px rgba(90,40,55,.08)}
+.s4{background:linear-gradient(180deg,var(--cd),var(--sf))}
+h1,h2{font-family:ui-rounded,"SF Pro Rounded","Avenir Next",system-ui,sans-serif}
+h2{display:flex;align-items:center;gap:.5em}
+.n{display:inline-grid;place-items:center;flex:none;width:1.7em;height:1.7em;border-radius:50%;background:var(--sc,var(--ac));color:var(--onb);font-size:.9em}
+
+/* Barra de progreso y texto del paso */
+.prog{height:8px;background:var(--sf);border-radius:99px;overflow:hidden;margin:12px 0}
+.prog i{display:block;height:100%;width:0;background:var(--ac);transition:width .3s}
+#stt{border-left:5px solid var(--ac);font-size:1.08rem;line-height:1.65;padding:14px 16px}
+#stt b{background:var(--pill);padding:.05em .45em;border-radius:.5em;white-space:nowrap}
+
+/* Pantallas anchas (iPad horizontal) */
+@media(min-width:1000px){main{max-width:1080px}}
+
