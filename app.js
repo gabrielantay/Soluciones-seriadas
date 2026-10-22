@@ -86,7 +86,7 @@ for(let c=0;c<NC;c++){const on=Q&&c<(Q.k=='n'?1:n),m=s.t=='read'?marks[r+'-'+c]|
 if(on&&r==sr){if(s.t=='x'){if(c==s.k)cl+=' src';if(c==s.k+1)cl+=' dst'}else if(s.t=='disc'&&c==n-1)cl+=' src'}
 h+=`<button class="well${cl}" data-r="${r}" data-c="${c}" aria-label="Pocillo ${LET[r]}${c+1}"><i class="lq" ${on&&z.d[c]!==null?lq(z.v[c],z.d[c],z.gr,m):'style="--s:0"'}>${m&&on?svg(m):''}</i></button>`}}
 $('pg').innerHTML=h;
-$('cnt').textContent='Paso '+(si+1)+' de '+S.length;$('stt').innerHTML=stx(s,R);
+$('cnt').textContent='Paso '+(si+1)+' de '+S.length;$('pb').style.width=((si+1)/S.length*100)+'%';$('stt').innerHTML=stx(s,R);
 $('pal').innerHTML=s.t=='read'?`<div class="pal">${[[1,'Botón','sin aglutinación'],[2,'Malla','aglutinación'],[3,'Parcial','dudoso']].map(([k,a,b])=>`<button class="${brush==k?'on':''}" onclick="brush=${k};render()"><div class="well"><i class="lq" style="--s:1;background:radial-gradient(circle at 40% 35%,rgba(255,222,226,.7),rgba(238,168,178,.55))">${svg(k)}</i></div>${a}<span class="t">${b}</span></button>`).join('')}</div><p class="t">Elige cómo se ve el pocillo y tócalo. Si tocas uno ya marcado igual, se borra. Son ilustraciones aproximadas: compáralas con tu placa real.</p>`:'';
 let t=md=='c'?'<tr><th>Pocillo</th><th>Dilución</th><th>Recibe</th>':'<tr><th>Pocillo</th><th>Dilución</th><th>Suero 1:'+N(D)+'</th><th>'+C.dl+'</th>';
 if(mono&&cs)t+='<th>µg/mL</th>';t+='</tr>';
